@@ -33,5 +33,36 @@
   </div>
 
   <script src="main.js"></script>
+  <script>
+    continueBtn.addEventListener('click', async () => {
+  if (selectedSeats.length === 0) {
+    alert('No has seleccionado ninguna butaca');
+    return;
+  }
+
+  try {
+    const response = await fetch('https://cine3-production.up.railway.app/api/butacas/guardar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ butacas: selectedSeats })
+    });
+
+    if (response.ok) {
+      alert('Butacas guardadas exitosamente: ' + selectedSeats.join(', '));
+      selectedSeats = [];
+      selectedList.textContent = '';  // Limpia selección en la UI
+      // Opcional: Quita la clase 'selected' de los divs butacas
+      document.querySelectorAll('.seat.selected').forEach(seat => seat.classList.remove('selected'));
+      continueBtn.classList.remove('enabled');
+    } else {
+      alert('Error al guardar butacas');
+    }
+  } catch (error) {
+    alert('Error de red o servidor');
+    console.error(error);
+  }
+});
+
+  </script>
 </body>
 </html>
