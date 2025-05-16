@@ -4,91 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Selecciona tus butacas</title>
-  <style>
-    body {
-      background-color: #e1f1f6;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      display: flex;
-    }
-    .sidebar {
-      width: 250px;
-      background: white;
-      padding: 20px;
-    }
-    .main {
-      flex: 1;
-      padding: 20px;
-      text-align: center;
-    }
-    .title {
-      background-color: #147bd1;
-      color: white;
-      font-size: 28px;
-      padding: 10px;
-    }
-    .screen {
-      margin: 20px 0;
-      font-weight: bold;
-      color: #147bd1;
-    }
-    .seats {
-      display: grid;
-      grid-template-columns: repeat(12, 30px);
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-    .seat {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 1px solid #999;
-      cursor: pointer;
-    }
-    .available { background-color: white; }
-    .occupied { background-color: #555; cursor: not-allowed; }
-    .selected { background-color: #002b5e; }
-    .wheelchair { background-color: #1e90ff; background-image: url('https://cdn-icons-png.flaticon.com/512/1081/1081920.png'); background-size: cover; }
-
-    .legend {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 10px 0;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .legend-item div {
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-    }
-    button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #ccc;
-      border: none;
-      border-radius: 5px;
-    }
-    button.enabled {
-      background-color: #147bd1;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="sidebar">
-    <img src="img/cholos.png" width="180px" height="150" alt="Poster" />
+    <img src="./img/cholos.png" width="180px" height="150" alt="Poster" />
     <h2>CHOLOS EMPERICADOS 2</h2>
     <p>2D, REGULAR<br />CP SJ LURIGANCHO<br />Hoy, 1 de Abr.<br />07:15 pm<br />SALA 9</p>
     <p style="color: red">🔞 Película con restricción de edad</p>
     <p><strong>¿NECESITAS AYUDA?</strong></p>
-    <img src="img/cliente.png" alt="Soporte" width="100"/>
+    <img src="./img/cliente.png" alt="Soporte" width="100"/>
     <p>Contáctanos.</p>
   </div>
   <div class="main">
@@ -121,7 +46,6 @@
         const seat = document.createElement('div');
         seat.classList.add('seat');
 
-        // Lógica de tipo de asiento aleatoria
         const r = Math.random();
         if (r < 0.1) seat.classList.add('occupied');
         else if (r < 0.2) seat.classList.add('wheelchair');
@@ -152,7 +76,6 @@
       if (selectedSeats.length === 0) return;
       alert('Guardado exitoso.\nButacas seleccionadas: ' + selectedSeats.join(', '));
 
-      // Guardar en MongoDB (llamada al backend)
       fetch('http://tu-dominio.railway.app/api/butacas/guardar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

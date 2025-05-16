@@ -1,0 +1,99 @@
+body {
+  background-color: #e1f1f6;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+}
+
+.sidebar {
+  width: 250px;
+  background: white;
+  padding: 20px;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  background-color: #147bd1;
+  color: white;
+  font-size: 28px;
+  padding: 10px;
+}
+
+.screen {
+  margin: 20px 0;
+  font-weight: bold;
+  color: #147bd1;
+}
+
+.seats {
+  display: grid;
+  grid-template-columns: repeat(12, 30px);
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+
+.available {
+  background-color: white;
+}
+
+.occupied {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.selected {
+  background-color: #002b5e;
+}
+
+.wheelchair {
+  background-color: #1e90ff;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1081/1081920.png');
+  background-size: cover;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-item div {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+}
+
+button.enabled {
+  background-color: #147bd1;
+  color: white;
+  cursor: pointer;
+}
