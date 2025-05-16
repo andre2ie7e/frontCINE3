@@ -8,12 +8,12 @@
 </head>
 <body>
   <div class="sidebar">
-    <img src="./img/cholos.png" width="180px" height="150" alt="Poster" />
+    <img src="img/cholos.png" width="180px" height="150" alt="Poster" />
     <h2>CHOLOS EMPERICADOS 2</h2>
     <p>2D, REGULAR<br />CP SJ LURIGANCHO<br />Hoy, 1 de Abr.<br />07:15 pm<br />SALA 9</p>
     <p style="color: red">🔞 Película con restricción de edad</p>
     <p><strong>¿NECESITAS AYUDA?</strong></p>
-    <img src="./img/cliente.png" alt="Soporte" width="100"/>
+    <img src="img/cliente.png" alt="Soporte" width="100"/>
     <p>Contáctanos.</p>
   </div>
   <div class="main">
@@ -32,60 +32,6 @@
     <button id="continueBtn">Continuar</button>
   </div>
 
-  <script>
-    const rows = 8;
-    const cols = 12;
-    const seatContainer = document.getElementById('seats');
-    const selectedList = document.getElementById('selectedList');
-    const continueBtn = document.getElementById('continueBtn');
-    let selectedSeats = [];
-
-    function renderSeats() {
-      seatContainer.innerHTML = '';
-      for (let i = 0; i < rows * cols; i++) {
-        const seat = document.createElement('div');
-        seat.classList.add('seat');
-
-        const r = Math.random();
-        if (r < 0.1) seat.classList.add('occupied');
-        else if (r < 0.2) seat.classList.add('wheelchair');
-        else seat.classList.add('available');
-
-        seat.dataset.id = i;
-        seat.addEventListener('click', () => selectSeat(seat));
-        seatContainer.appendChild(seat);
-      }
-    }
-
-    function selectSeat(seat) {
-      if (seat.classList.contains('occupied')) return;
-
-      seat.classList.toggle('selected');
-      const id = seat.dataset.id;
-
-      if (seat.classList.contains('selected')) {
-        selectedSeats.push(id);
-      } else {
-        selectedSeats = selectedSeats.filter(s => s !== id);
-      }
-      selectedList.textContent = selectedSeats.join(', ');
-      continueBtn.classList.toggle('enabled', selectedSeats.length > 0);
-    }
-
-    continueBtn.addEventListener('click', () => {
-      if (selectedSeats.length === 0) return;
-      alert('Guardado exitoso.\nButacas seleccionadas: ' + selectedSeats.join(', '));
-
-      fetch('http://tu-dominio.railway.app/api/butacas/guardar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ butacas: selectedSeats })
-      })
-        .then(res => res.json())
-        .then(data => console.log(data));
-    });
-
-    renderSeats();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
